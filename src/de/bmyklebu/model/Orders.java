@@ -8,30 +8,57 @@ public class Orders {
         robot.setCurrentRobotYPos(iSetPositionY);
     }
 
-    public void move(Robots robot, String sDirection) {
+    public void move(Robots robot) {
 
-        int iRobotNr = robot.getRobotNr();
-
+        //get current info from robot
         int icurrentRobotXPos = robot.getCurrentRobotXPos();
         int icurrentRobotYPos = robot.getCurrentRobotYPos();
-        robot.setRobotDirection(sDirection);
+        String sCurrentDirection = robot.getRobotDirection();
 
-        if (sDirection.equalsIgnoreCase("N")) {
+        if (sCurrentDirection.equalsIgnoreCase("N")) {
             robot.setCurrentRobotYPos(icurrentRobotYPos + 1);
         }
 
-        if (sDirection.equalsIgnoreCase("E")) {
+        if (sCurrentDirection.equalsIgnoreCase("E")) {
             robot.setCurrentRobotXPos(icurrentRobotXPos + 1);
         }
 
-        if (sDirection.equalsIgnoreCase("S")) {
-            robot.setCurrentRobotYPos(icurrentRobotYPos-1);
+        if (sCurrentDirection.equalsIgnoreCase("S")) {
+            robot.setCurrentRobotYPos(icurrentRobotYPos - 1);
         }
 
-        if (sDirection.equalsIgnoreCase("W")) {
-            robot.setCurrentRobotXPos(icurrentRobotXPos-1);
+        if (sCurrentDirection.equalsIgnoreCase("W")) {
+            robot.setCurrentRobotXPos(icurrentRobotXPos - 1);
         }
 
+    }
+
+    public void turn(Robots robot, String sTurnType) {
+        String sCurrentHeading = robot.getRobotDirection();
+        System.out.println("->"+sCurrentHeading);
+        if (sTurnType.equalsIgnoreCase("L")|| sTurnType.equalsIgnoreCase("R")){
+
+            if (sTurnType.equalsIgnoreCase("R")) {
+
+                switch (sCurrentHeading.toUpperCase()) {
+                    case "N" -> robot.setRobotDirection("E");
+                    case "E" -> robot.setRobotDirection("S");
+                    case "S" -> robot.setRobotDirection("W");
+                    case "W" -> robot.setRobotDirection("N");
+                }
+            }
+
+            if (sTurnType.equalsIgnoreCase("L")) {
+
+                switch (sCurrentHeading.toUpperCase()) {
+                    case "N" -> robot.setRobotDirection("W");
+                    case "E" -> robot.setRobotDirection("N");
+                    case "S" -> robot.setRobotDirection("E");
+                    case "W" -> robot.setRobotDirection("S");
+                }
+            }
+
+        }
 
     }
 }

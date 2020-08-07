@@ -6,7 +6,7 @@ public class Robots {
     private int iCurrentRobotXPos = 5;
     private int iCurrentRobotYPos = 5;
     private int robotNr;
-    private String sRobotDirection = "no direction yet";
+    private String sRobotDirection = "N";
 
     public int getCurrentRobotXPos() {
         return iCurrentRobotXPos;
