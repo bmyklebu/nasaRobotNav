@@ -3,34 +3,33 @@ package de.bmyklebu.model;
 public class Orders {
     Robots robotOrder;
 
-    public void setRobotStartPosition(int iSetPositionX, int iSetPositionY) {
-        robotOrder.setCurrentRobotXPos(iSetPositionX);
-        robotOrder.setCurrentRobotYPos(iSetPositionY);
+    public void setRobotStartPosition(Robots robot, int iSetPositionX, int iSetPositionY) {
+        robot.setCurrentRobotXPos(iSetPositionX);
+        robot.setCurrentRobotYPos(iSetPositionY);
     }
 
-    public void move(Robots robot, int imovementValue, String sdirection) {
-        //TODO incorperste movementvalue with for loop
+    public void move(Robots robot, String sDirection) {
+
         int iRobotNr = robot.getRobotNr();
 
         int icurrentRobotXPos = robot.getCurrentRobotXPos();
         int icurrentRobotYPos = robot.getCurrentRobotYPos();
+        robot.setRobotDirection(sDirection);
 
-        if (sdirection.equalsIgnoreCase("N")) {
-            this.robotOrder.setCurrentRobotYPos(icurrentRobotYPos + 1);
-
+        if (sDirection.equalsIgnoreCase("N")) {
+            robot.setCurrentRobotYPos(icurrentRobotYPos + 1);
         }
 
-        if (sdirection.equalsIgnoreCase("E")) {
-            this.robotOrder.setCurrentRobotXPos(icurrentRobotXPos + 1);
-
+        if (sDirection.equalsIgnoreCase("E")) {
+            robot.setCurrentRobotXPos(icurrentRobotXPos + 1);
         }
 
-        if (sdirection.equalsIgnoreCase("S")) {
-            this.robotOrder.setCurrentRobotYPos(icurrentRobotYPos - 1);
+        if (sDirection.equalsIgnoreCase("S")) {
+            robot.setCurrentRobotYPos(icurrentRobotYPos-1);
         }
 
-        if (sdirection.equalsIgnoreCase("W")) {
-            this.robotOrder.setCurrentRobotXPos(icurrentRobotXPos - 1);
+        if (sDirection.equalsIgnoreCase("W")) {
+            robot.setCurrentRobotXPos(icurrentRobotXPos-1);
         }
 
 
