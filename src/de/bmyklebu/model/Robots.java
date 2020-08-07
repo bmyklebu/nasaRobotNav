@@ -1,10 +1,10 @@
-package de.bmyklebu.robots;
+package de.bmyklebu.model;
 
 public class Robots {
 
     //initialize values with a value that cant be true (helps debugging)
-    private int currentRobotXPos = -1;
-    private int currentRobotYPos = -1;
+    private int currentRobotXPos = 5;
+    private int currentRobotYPos = 5;
     private int robotNr;
 
     public int getCurrentRobotXPos() {
@@ -31,5 +31,12 @@ public class Robots {
         this.robotNr = robotNr;
     }
 
-
+    @Override
+    public String toString() {
+        return "Robots{" +
+                "currentRobotXPos=" + currentRobotXPos +
+                ", currentRobotYPos=" + currentRobotYPos +
+                ", robotNr=" + robotNr +
+                '}';
+    }
 }
