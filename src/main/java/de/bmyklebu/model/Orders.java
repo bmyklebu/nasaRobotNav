@@ -33,12 +33,12 @@ public class Orders {
 
     }
 
-    public void turn(Robots robot, String sTurnType) {
+    public void turn(Robots robot, String sTurnDirection) {
         String sCurrentHeading = robot.getRobotDirection();
         System.out.println("->"+sCurrentHeading);
-        if (sTurnType.equalsIgnoreCase("L")|| sTurnType.equalsIgnoreCase("R")){
+        if (sTurnDirection.equalsIgnoreCase("L")|| sTurnDirection.equalsIgnoreCase("R")){
 
-            if (sTurnType.equalsIgnoreCase("R")) {
+            if (sTurnDirection.equalsIgnoreCase("R")) {
 
                 switch (sCurrentHeading.toUpperCase()) {
                     case "N" -> robot.setRobotDirection("E");
@@ -48,7 +48,7 @@ public class Orders {
                 }
             }
 
-            if (sTurnType.equalsIgnoreCase("L")) {
+            if (sTurnDirection.equalsIgnoreCase("L")) {
 
                 switch (sCurrentHeading.toUpperCase()) {
                     case "N" -> robot.setRobotDirection("W");
