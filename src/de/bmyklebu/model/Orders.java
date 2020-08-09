@@ -1,34 +1,59 @@
 package de.bmyklebu.model;
 
+import de.bmyklebu.grid.CurrentGrid;
+
 public class Orders {
     Robots robotOrder;
 
     public void setRobotStartPosition(Robots robot, int iSetPositionX, int iSetPositionY) {
-        robot.setCurrentRobotXPos(iSetPositionX);
-        robot.setCurrentRobotYPos(iSetPositionY);
+        CurrentGrid grid = new CurrentGrid();
+        if (grid.isCoordinateOutOfBounds(iSetPositionX,iSetPositionY)){
+            System.out.println("Rover will be sent off the grid");
+        }else{
+            robot.setCurrentRobotXPos(iSetPositionX);
+            robot.setCurrentRobotYPos(iSetPositionY);
+        }
+
     }
 
     public void move(Robots robot) {
-
+        CurrentGrid grid = new CurrentGrid();
         //get current info from robot
-        int icurrentRobotXPos = robot.getCurrentRobotXPos();
-        int icurrentRobotYPos = robot.getCurrentRobotYPos();
+        int iCurrentRobotXPos = robot.getCurrentRobotXPos();
+        int iCurrentRobotYPos = robot.getCurrentRobotYPos();
         String sCurrentDirection = robot.getRobotDirection();
 
         if (sCurrentDirection.equalsIgnoreCase("N")) {
-            robot.setCurrentRobotYPos(icurrentRobotYPos + 1);
+            if (grid.isYCoordinateOutOfBounds(iCurrentRobotYPos+1)){
+                System.out.println("Moon rover will move off the grid");
+            }else {
+                robot.setCurrentRobotYPos(iCurrentRobotYPos + 1);
+            }
         }
 
         if (sCurrentDirection.equalsIgnoreCase("E")) {
-            robot.setCurrentRobotXPos(icurrentRobotXPos + 1);
+            if (grid.isXCoordinateOutOfBounds(iCurrentRobotXPos+1)){
+                System.out.println("error");
+            }else {
+                robot.setCurrentRobotXPos(iCurrentRobotXPos + 1);
+            }
         }
 
         if (sCurrentDirection.equalsIgnoreCase("S")) {
-            robot.setCurrentRobotYPos(icurrentRobotYPos - 1);
+            if (grid.isYCoordinateOutOfBounds(iCurrentRobotYPos-1)){
+                System.out.println("Moon rover will move off the grid");
+            }else {
+                robot.setCurrentRobotYPos(iCurrentRobotYPos - 1);
+            }
         }
 
         if (sCurrentDirection.equalsIgnoreCase("W")) {
-            robot.setCurrentRobotXPos(icurrentRobotXPos - 1);
+            if (grid.isXCoordinateOutOfBounds(iCurrentRobotXPos-1)){
+                System.out.println("error");
+            }else{
+                robot.setCurrentRobotXPos(iCurrentRobotXPos - 1);
+            }
+
         }
 
     }

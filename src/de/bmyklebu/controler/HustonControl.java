@@ -20,8 +20,12 @@ public class HustonControl {
         System.out.println("start"+rover1.toString());
         orders1.turn(rover1,"L");
         orders1.move(rover1);
-//        System.out.println(rover1.toString());
-//        orders1.turn(rover1,"L");
+        orders1.move(rover1);
+        orders1.move(rover1);
+        orders1.move(rover1);
+        orders1.move(rover1);
+        orders1.move(rover1);
+
 //
         System.out.println(rover1.toString());
 

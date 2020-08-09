@@ -20,6 +20,35 @@ public class CurrentGrid {
     public void setGridPositionY(int[] iGridPositionY) {
         this.iGridPositionY = iGridPositionY;
     }
+
+    public boolean isCoordinateOutOfBounds(int xCoordinate, int yCoordinate){
+        boolean outOfBounds = false;
+        if (xCoordinate < iGridPositionX[0] || xCoordinate > iGridPositionX[4]){
+            outOfBounds = true;
+        }
+        if (yCoordinate < iGridPositionY[0] || yCoordinate > iGridPositionY[4]){
+            outOfBounds = true;
+        }
+        return outOfBounds;
+    }
+    public boolean isXCoordinateOutOfBounds(int xCoordinate) {
+        boolean outOfBounds = false;
+        if (xCoordinate < iGridPositionX[0] || xCoordinate > iGridPositionX[4]) {
+            outOfBounds = true;
+        }
+
+        return outOfBounds;
+    }
+
+        public boolean isYCoordinateOutOfBounds(int yCoordinate){
+        boolean outOfBounds = false;
+        if (yCoordinate < iGridPositionY[0] || yCoordinate > iGridPositionY[4]){
+            outOfBounds = true;
+        }
+
+        return outOfBounds;
+    }
+
 }
 
 
