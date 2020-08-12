@@ -1,6 +1,9 @@
-package de.bmyklebu.model;
+package de.bmyklebu.logic;
 
 import de.bmyklebu.grid.CurrentGrid;
+import de.bmyklebu.model.Robots;
+
+import static de.bmyklebu.feedback.RoverFeedback.STR_GRID_COLLISION;
 
 public class Orders {
     Robots robotOrder;
@@ -8,7 +11,7 @@ public class Orders {
     public void setRobotStartPosition(Robots robot, int iSetPositionX, int iSetPositionY) {
         CurrentGrid grid = new CurrentGrid();
         if (grid.isCoordinateOutOfBounds(iSetPositionX,iSetPositionY)){
-            System.out.println("Rover will be sent off the grid");
+            System.out.println(STR_GRID_COLLISION);
         }else{
             robot.setCurrentRobotXPos(iSetPositionX);
             robot.setCurrentRobotYPos(iSetPositionY);
@@ -25,7 +28,7 @@ public class Orders {
 
         if (sCurrentDirection.equalsIgnoreCase("N")) {
             if (grid.isYCoordinateOutOfBounds(iCurrentRobotYPos+1)){
-                System.out.println("Moon rover will move off the grid");
+                System.out.println(STR_GRID_COLLISION);
             }else {
                 robot.setCurrentRobotYPos(iCurrentRobotYPos + 1);
             }
@@ -33,7 +36,7 @@ public class Orders {
 
         if (sCurrentDirection.equalsIgnoreCase("E")) {
             if (grid.isXCoordinateOutOfBounds(iCurrentRobotXPos+1)){
-                System.out.println("error");
+                System.out.println(STR_GRID_COLLISION);
             }else {
                 robot.setCurrentRobotXPos(iCurrentRobotXPos + 1);
             }
@@ -41,7 +44,7 @@ public class Orders {
 
         if (sCurrentDirection.equalsIgnoreCase("S")) {
             if (grid.isYCoordinateOutOfBounds(iCurrentRobotYPos-1)){
-                System.out.println("Moon rover will move off the grid");
+                System.out.println(STR_GRID_COLLISION);
             }else {
                 robot.setCurrentRobotYPos(iCurrentRobotYPos - 1);
             }
@@ -49,7 +52,7 @@ public class Orders {
 
         if (sCurrentDirection.equalsIgnoreCase("W")) {
             if (grid.isXCoordinateOutOfBounds(iCurrentRobotXPos-1)){
-                System.out.println("error");
+                System.out.println(STR_GRID_COLLISION);
             }else{
                 robot.setCurrentRobotXPos(iCurrentRobotXPos - 1);
             }

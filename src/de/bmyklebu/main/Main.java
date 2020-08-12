@@ -1,10 +1,6 @@
 package de.bmyklebu.main;
 
 import de.bmyklebu.controler.HustonControl;
-import de.bmyklebu.model.Orders;
-import de.bmyklebu.model.Robots;
-
-import static de.bmyklebu.grid.GridBoundryValues.*;
 
 public class Main {
 

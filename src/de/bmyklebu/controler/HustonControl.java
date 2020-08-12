@@ -1,6 +1,6 @@
 package de.bmyklebu.controler;
 
-import de.bmyklebu.model.Orders;
+import de.bmyklebu.logic.Orders;
 import de.bmyklebu.model.Robots;
 
 import static de.bmyklebu.grid.GridBoundryValues.iBOUNDRY_X;
