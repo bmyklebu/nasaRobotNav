@@ -15,6 +15,9 @@ public class Orders {
         }else{
             robot.setCurrentRobotXPos(iSetPositionX);
             robot.setCurrentRobotYPos(iSetPositionY);
+            //rover logging
+            CurrentGrid robotGrid = new CurrentGrid();
+            robotGrid.setRobotCoordsOnGrid(iSetPositionY,iSetPositionX,robot);
         }
 
     }
@@ -30,6 +33,8 @@ public class Orders {
             if (grid.isYCoordinateOutOfBounds(iCurrentRobotYPos+1)){
                 System.out.println(STR_GRID_COLLISION);
             }else {
+                //TODO add rover location logging to all 4 directions in move and test collision detection
+                grid.setRobotCoordsOnGrid(iCurrentRobotYPos+1,iCurrentRobotXPos,robot);
                 robot.setCurrentRobotYPos(iCurrentRobotYPos + 1);
             }
         }
