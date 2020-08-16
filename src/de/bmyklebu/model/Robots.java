@@ -42,11 +42,11 @@ public class Robots {
 
     @Override
     public String toString() {
-        return "Robots{" +
-                "iCurrentRobotXPos=" + iCurrentRobotXPos +
-                ", iCurrentRobotYPos=" + iCurrentRobotYPos +
-                ", robotNr=" + robotNr +
-                ", sRobotDirection='" + sRobotDirection + '\'' +
+        return "" +
+                "robotNr=" + robotNr +
+                "\n Xpos=" + iCurrentRobotXPos +
+                "\n Ypos=" + iCurrentRobotYPos +
+                "\n Direction='" + sRobotDirection + '\'' +
                 '}';
     }
 }

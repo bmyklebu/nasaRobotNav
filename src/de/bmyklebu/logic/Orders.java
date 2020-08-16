@@ -4,23 +4,12 @@ import de.bmyklebu.grid.CurrentGrid;
 import de.bmyklebu.model.Robots;
 
 import static de.bmyklebu.feedback.RoverFeedback.STR_GRID_COLLISION;
+import static de.bmyklebu.feedback.RoverFeedback.STR_ROBOT_COLLISION;
 
 public class Orders {
     Robots robotOrder;
 
-    public void setRobotStartPosition(Robots robot, int iSetPositionX, int iSetPositionY) {
-        CurrentGrid grid = new CurrentGrid();
-        if (grid.isCoordinateOutOfBounds(iSetPositionX,iSetPositionY)){
-            System.out.println(STR_GRID_COLLISION);
-        }else{
-            robot.setCurrentRobotXPos(iSetPositionX);
-            robot.setCurrentRobotYPos(iSetPositionY);
-            //rover logging
-            CurrentGrid robotGrid = new CurrentGrid();
-            robotGrid.setRobotCoordsOnGrid(iSetPositionY,iSetPositionX,robot);
-        }
 
-    }
 
     public void move(Robots robot) {
         CurrentGrid grid = new CurrentGrid();
@@ -30,36 +19,64 @@ public class Orders {
         String sCurrentDirection = robot.getRobotDirection();
 
         if (sCurrentDirection.equalsIgnoreCase("N")) {
-            if (grid.isYCoordinateOutOfBounds(iCurrentRobotYPos+1)){
+            if (grid.isYCoordinateOutOfBounds(iCurrentRobotYPos + 1)) {
                 System.out.println(STR_GRID_COLLISION);
-            }else {
-                //TODO add rover location logging to all 4 directions in move and test collision detection
-                grid.setRobotCoordsOnGrid(iCurrentRobotYPos+1,iCurrentRobotXPos,robot);
-                robot.setCurrentRobotYPos(iCurrentRobotYPos + 1);
+            } else {
+
+                if (grid.isGridTileOccupied(iCurrentRobotYPos + 1,iCurrentRobotXPos)){
+                    System.out.println(STR_ROBOT_COLLISION);
+                }else{
+                    grid.cleanYCoordsOnGrid(iCurrentRobotYPos);
+                    grid.setRobotCoordsOnGrid(iCurrentRobotYPos + 1, iCurrentRobotXPos, robot);
+                    robot.setCurrentRobotYPos(iCurrentRobotYPos + 1);
+                }
+
             }
         }
 
         if (sCurrentDirection.equalsIgnoreCase("E")) {
-            if (grid.isXCoordinateOutOfBounds(iCurrentRobotXPos+1)){
+            if (grid.isXCoordinateOutOfBounds(iCurrentRobotXPos + 1)) {
                 System.out.println(STR_GRID_COLLISION);
-            }else {
-                robot.setCurrentRobotXPos(iCurrentRobotXPos + 1);
+            } else {
+                if (grid.isGridTileOccupied(iCurrentRobotYPos,iCurrentRobotXPos + 1)){
+                    System.out.println(STR_ROBOT_COLLISION);
+                }else{
+                    grid.cleanXCoordsOnGrid(iCurrentRobotXPos);
+                    grid.setRobotCoordsOnGrid(iCurrentRobotYPos, iCurrentRobotXPos + 1, robot);
+                    robot.setCurrentRobotXPos(iCurrentRobotXPos + 1);
+                }
+
             }
         }
 
         if (sCurrentDirection.equalsIgnoreCase("S")) {
-            if (grid.isYCoordinateOutOfBounds(iCurrentRobotYPos-1)){
+            if (grid.isYCoordinateOutOfBounds(iCurrentRobotYPos - 1)) {
                 System.out.println(STR_GRID_COLLISION);
-            }else {
-                robot.setCurrentRobotYPos(iCurrentRobotYPos - 1);
+            } else {
+                if (grid.isGridTileOccupied(iCurrentRobotYPos - 1,iCurrentRobotXPos)){
+                    System.out.println(STR_ROBOT_COLLISION);
+                }else{
+                    grid.cleanYCoordsOnGrid(iCurrentRobotYPos);
+                    grid.setRobotCoordsOnGrid(iCurrentRobotYPos - 1, iCurrentRobotXPos, robot);
+                    robot.setCurrentRobotYPos(iCurrentRobotYPos - 1);
+                }
+
             }
         }
 
         if (sCurrentDirection.equalsIgnoreCase("W")) {
-            if (grid.isXCoordinateOutOfBounds(iCurrentRobotXPos-1)){
+            if (grid.isXCoordinateOutOfBounds(iCurrentRobotXPos - 1)) {
+
                 System.out.println(STR_GRID_COLLISION);
-            }else{
-                robot.setCurrentRobotXPos(iCurrentRobotXPos - 1);
+            } else {
+                if (grid.isGridTileOccupied(iCurrentRobotYPos,(iCurrentRobotXPos - 1))){
+                    System.out.println(STR_ROBOT_COLLISION);
+                }else{
+                    grid.cleanXCoordsOnGrid(iCurrentRobotXPos);
+                    grid.setRobotCoordsOnGrid(iCurrentRobotYPos, iCurrentRobotXPos - 1, robot);
+                    robot.setCurrentRobotXPos(iCurrentRobotXPos - 1);
+                }
+
             }
 
         }
@@ -68,8 +85,8 @@ public class Orders {
 
     public void turn(Robots robot, String sTurnType) {
         String sCurrentHeading = robot.getRobotDirection();
-        System.out.println("->"+sCurrentHeading);
-        if (sTurnType.equalsIgnoreCase("L")|| sTurnType.equalsIgnoreCase("R")){
+        //System.out.println("heading :" + sCurrentHeading);
+        if (sTurnType.equalsIgnoreCase("L") || sTurnType.equalsIgnoreCase("R")) {
 
             if (sTurnType.equalsIgnoreCase("R")) {
 
